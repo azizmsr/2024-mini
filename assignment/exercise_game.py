@@ -20,7 +20,7 @@ def random_time_interval(tmin: float, tmax: float) -> float:
 
 def blinker(N: int, led: Pin) -> None:
     # %% let user know game started / is over
-
+`
     for _ in range(N):
         led.high()
         time.sleep(0.1)

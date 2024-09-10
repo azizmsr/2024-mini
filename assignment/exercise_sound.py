@@ -34,6 +34,22 @@ for i in range(64):
     print(freq)
     playtone(freq, duration)
     freq = int(freq * 1.1)
+    
+    
+playtone(261,0.5)
+playtone(261,0.5)
+playtone(392,0.5)
+playtone(392,0.5)
+playtone(440,0.5)
+playtone(440,0.5)
+playtone(392,0.5)
+playtone(349,0.5)
+playtone(349,0.5)
+playtone(329,0.5)
+playtone(329,0.5)
+playtone(293,0.5)
+playtone(293,0.5)
+playtone(261,0.5)	
 
 # Turn off the PWM
 quiet()
