@@ -6,12 +6,13 @@ from machine import Pin
 import time
 import random
 import json
-
+import requests 
+import network
 
 N: int = 3
 sample_ms = 10.0
 on_ms = 500
-
+cloud = https://mini-project-1755a-default-rtdb.firebaseio.com/scores.json?auth=iS6APlcGDPf7CXJDP9t5LiEgDmSO5HGb2ydQTkFH
 
 def random_time_interval(tmin: float, tmax: float) -> float:
     """return a random time interval between max and min"""
@@ -20,7 +21,7 @@ def random_time_interval(tmin: float, tmax: float) -> float:
 
 def blinker(N: int, led: Pin) -> None:
     # %% let user know game started / is over
-`
+
     for _ in range(N):
         led.high()
         time.sleep(0.1)
@@ -69,7 +70,7 @@ def scorer(t: list[int | None]) -> None:
     print("write", filename)
 
     write_json(filename, data)
-
+    requests.post(cloud,json=data)
 
 if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files
