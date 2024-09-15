@@ -9,6 +9,12 @@ import json
 import requests 
 import network
 
+wifiname = 'BU Guest (unencrypted)'
+password = ''
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(wifiname, password)
+
 N: int = 3
 sample_ms = 10.0
 on_ms = 500
