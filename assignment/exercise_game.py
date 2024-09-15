@@ -12,7 +12,9 @@ import network
 N: int = 3
 sample_ms = 10.0
 on_ms = 500
-cloud = https://mini-project-1755a-default-rtdb.firebaseio.com/scores.json?auth=iS6APlcGDPf7CXJDP9t5LiEgDmSO5HGb2ydQTkFH
+cloud_url = "https://mini-project-1755a-default-rtdb.firebaseio.com/scores.json?auth=iS6APlcGDPf7CXJDP9t5LiEgDmSO5HGb2ydQTkFH"
+response = requests.post(cloud_url, json=score_dict)
+
 
 def random_time_interval(tmin: float, tmax: float) -> float:
     """return a random time interval between max and min"""
@@ -58,7 +60,14 @@ def scorer(t: list[int | None]) -> None:
     # add key, value to this dict to store the minimum, maximum, average response time
     # and score (non-misses / total flashes) i.e. the score a floating point number
     # is in range [0..1]
-    data = {}
+    if len(t_good) > 0:
+    mi = min(t_good)
+    ma = max(t_good)
+    avg = sum(t_good)/len(t)
+    score = t_good/N
+    data = {mi,ma,avg,score}
+    else:
+    data = { }
 
     # %% make dynamic filename and write JSON
 
@@ -70,7 +79,7 @@ def scorer(t: list[int | None]) -> None:
     print("write", filename)
 
     write_json(filename, data)
-    requests.post(cloud,json=data)
+    requests.post(clou_url,json=data)
 
 if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files
