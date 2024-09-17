@@ -15,10 +15,10 @@ wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 wlan.connect(wifiname, password)
 
-N: int = 3
+N: int = 10
 sample_ms = 10.0
 on_ms = 500
-cloud_url = "https://mini-project-1755a-default-rtdb.firebaseio.com/scores.json?auth=iS6APlcGDPf7CXJDP9t5LiEgDmSO5HGb2ydQTkFH"
+cloud_url = "https://mini-project-1755a-default-rtdb.firebaseio.com/scores.json"
 
 
 def random_time_interval(tmin: float, tmax: float) -> float:
@@ -68,9 +68,12 @@ def scorer(t: list[int | None]) -> None:
     if len(t_good) > 0:
         mi = min(t_good)
         ma = max(t_good)
-        avg = sum(t_good)/len(t)
+        avg = sum(t_good)/len(t_good)
         score = N-misses/N
-        data = {mi,ma,avg,score}
+        data = {"Min": mi,
+                "Max": ma,
+                "Average": avg,
+                "Score": score}
     else:
         data = { }
 
